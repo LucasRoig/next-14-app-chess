@@ -9,6 +9,7 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
+    "@clerk/nextjs": "^5.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@repo/ui": "workspace:*",
     "class-variance-authority": "^0.7.0",
