@@ -2,7 +2,10 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"],  
+ display: "swap", //Fix network error to load font
+adjustFontFallback: false, //Fix network error to load font 
+});
 
 export const metadata: Metadata = {
   title: "Create Turborepo",
