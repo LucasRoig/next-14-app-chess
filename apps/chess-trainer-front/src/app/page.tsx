@@ -2,6 +2,8 @@ import { Poppins } from "next/font/google";
 import { Button } from "../components/ui/button";
 import { cn } from "../lib/utils";
 import { UserButton } from "@clerk/nextjs";
+import Chessboard from "../components/chessboard";
+
 
 const font = Poppins({ 
   subsets: ["latin"],
@@ -13,10 +15,13 @@ const font = Poppins({
 export default function HomePage() {
   return (
     <div>
-      <h1 className="bg-red-500">Welcome to Chess Trainer</h1>
-      <p>Learn and improve your chess skills</p>
-      <Button className={cn(font.className)} variant="secondary">Get Started Now</Button>
+      <h1 className={cn(font.className)}>Welcome to Chess Trainer</h1>
       <UserButton />
+      <div className="max-w-[400px]">
+
+      </div>
+      <Chessboard />
+      
     </div>
   )
 }
