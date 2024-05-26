@@ -1,0 +1,45 @@
+.mainlineMove{
+  margin-right: 0.5em;
+  font-family: 'Chess', 'Noto Sans', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.active {
+  font-weight: bold;
+  background: #d1e4f6;
+  border-radius: 3px;
+}
+.comment {
+  margin-right: 0.5em;
+  font-family: 'Chess', 'Noto Sans', sans-serif;
+  color: darkblue;
+}
+
+.variationD1 {
+  margin-left: 0.7em;
+  flex-basis: 100%;
+  overflow-wrap: anywhere;
+}
+
+.variationD1 .variationMove {
+  margin-right: 0.5em;
+  font-family: 'Chess', 'Noto Sans', sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.variationD1 .variationMove:nth-last-child(1) {
+  margin-right: 0;
+}
+
+.variationD2 .variationMove {
+  margin-right: 0.5em;
+  font-family: 'Chess', 'Noto Sans', sans-serif;
+  font-style: italic;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.variationD2 .variationMove:nth-last-child(1) {
+  margin-right: 0.2em;
+}
