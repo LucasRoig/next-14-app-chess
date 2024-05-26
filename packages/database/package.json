@@ -1,0 +1,18 @@
+{
+  "name": "@repo/database",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "db:generate": "npx @edgedb/generate edgeql-js"
+  },
+  "dependencies": {
+    "edgedb": "^1.5.7"
+  },
+  "devDependencies": {
+    "@edgedb/generate": "^0.5.3"
+  }
+}

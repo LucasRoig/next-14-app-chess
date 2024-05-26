@@ -6,6 +6,7 @@ import Chessboard from "../components/chessboard";
 import Game from "../../public/data/simple-game.json";
 import { NotationPanel } from "../components/notation-panel";
 import { NormalizedGame, NormalizedPosition } from "../lib/chess/normalized-game";
+import { dbClient, queryBuilder } from "@repo/database";
 
 const game = {
   ...Game.game,
@@ -26,11 +27,16 @@ const font = Poppins({
   adjustFontFallback: false, //Fix network error to load font
 });
 
-export default function HomePage() {
+export default async function HomePage() {
+  const x = await queryBuilder.select(queryBuilder.Movie, () => ({
+    actors: () => ({name: true}),
+    title: true
+  })).run(dbClient)
   return (
     <div>
+      {JSON.stringify(x)}
       <h1 className={cn(font.className)}>Welcome to Chess Trainer</h1>
-      <UserButton />
+      {/* <UserButton /> */}
       <div className="max-w-[400px]"></div>
       <Chessboard />
       <NotationPanel game={game} currentPositionIndex={0} />
