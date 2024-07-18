@@ -6,7 +6,6 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "lint": "eslint . --max-warnings 0",
     "db:generate": "npx @edgedb/generate edgeql-js"
   },
   "dependencies": {

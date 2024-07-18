@@ -2,7 +2,6 @@
 import { NormalizedGame, NormalizedGameHelper, NormalizedPosition } from "../lib/chess/normalized-game";
 import classes from "./notation-panel.module.css";
 
-// eslint-disable-next-line no-unused-vars
 type PositionClickedHandler = (pos: NormalizedPosition) => void;
 
 export type NotationPanelProps = {

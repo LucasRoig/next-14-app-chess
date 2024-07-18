@@ -3,6 +3,16 @@
 import * as $ from "../reflection";
 import * as _ from "../imports";
 import type * as _std from "./std";
+export type $ChessDatabaseλShape = $.typeutil.flatten<_std.$Object_8ce8c71ee4fa5f73840c22d7eaa58588λShape & {
+  "name": $.PropertyDesc<_std.$str, $.Cardinality.One, false, false, false, false>;
+}>;
+type $ChessDatabase = $.ObjectType<"default::ChessDatabase", $ChessDatabaseλShape, null, [
+  ..._std.$Object_8ce8c71ee4fa5f73840c22d7eaa58588['__exclusives__'],
+]>;
+const $ChessDatabase = $.makeType<$ChessDatabase>(_.spec, "aab2ab26-452d-11ef-bb66-dfe3a0f6b655", _.syntax.literal);
+
+const ChessDatabase: $.$expr_PathNode<$.TypeSet<$ChessDatabase, $.Cardinality.Many>, null> = _.syntax.$PathNode($.$toSet($ChessDatabase, $.Cardinality.Many), null);
+
 export type $MovieλShape = $.typeutil.flatten<_std.$Object_8ce8c71ee4fa5f73840c22d7eaa58588λShape & {
   "actors": $.LinkDesc<$Person, $.Cardinality.Many, {}, false, false,  false, false>;
   "title": $.PropertyDesc<_std.$str, $.Cardinality.One, false, false, false, false>;
@@ -10,7 +20,7 @@ export type $MovieλShape = $.typeutil.flatten<_std.$Object_8ce8c71ee4fa5f73840c
 type $Movie = $.ObjectType<"default::Movie", $MovieλShape, null, [
   ..._std.$Object_8ce8c71ee4fa5f73840c22d7eaa58588['__exclusives__'],
 ]>;
-const $Movie = $.makeType<$Movie>(_.spec, "f5262b9d-1b97-11ef-af5a-7503de8fd5c2", _.syntax.literal);
+const $Movie = $.makeType<$Movie>(_.spec, "6b60ccca-452c-11ef-a4f6-9139d3270585", _.syntax.literal);
 
 const Movie: $.$expr_PathNode<$.TypeSet<$Movie, $.Cardinality.Many>, null> = _.syntax.$PathNode($.$toSet($Movie, $.Cardinality.Many), null);
 
@@ -22,19 +32,21 @@ export type $PersonλShape = $.typeutil.flatten<_std.$Object_8ce8c71ee4fa5f73840
 type $Person = $.ObjectType<"default::Person", $PersonλShape, null, [
   ..._std.$Object_8ce8c71ee4fa5f73840c22d7eaa58588['__exclusives__'],
 ]>;
-const $Person = $.makeType<$Person>(_.spec, "f5250944-1b97-11ef-bddd-c5d887add07d", _.syntax.literal);
+const $Person = $.makeType<$Person>(_.spec, "6b5f8fb6-452c-11ef-95dd-519acee85fed", _.syntax.literal);
 
 const Person: $.$expr_PathNode<$.TypeSet<$Person, $.Cardinality.Many>, null> = _.syntax.$PathNode($.$toSet($Person, $.Cardinality.Many), null);
 
 
 
-export { $Movie, Movie, $Person, Person };
+export { $ChessDatabase, ChessDatabase, $Movie, Movie, $Person, Person };
 
 type __defaultExports = {
+  "ChessDatabase": typeof ChessDatabase;
   "Movie": typeof Movie;
   "Person": typeof Person
 };
 const __defaultExports: __defaultExports = {
+  "ChessDatabase": ChessDatabase,
   "Movie": Movie,
   "Person": Person
 };

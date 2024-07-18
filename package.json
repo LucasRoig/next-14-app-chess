@@ -4,15 +4,16 @@
   "scripts": {
     "build": "turbo build",
     "dev": "pnpm -C apps/chess-trainer-front dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "db:generate": "pnpm -C packages/database db:generate"
+    "lint": "pnpm biome ci",
+    "fix": "pnpm biome check --write",
+    "db:generate": "pnpm -C packages/database db:generate",
+    "db:create-migration": "edgedb migration create",
+    "db:migrate": "edgedb migrate"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "prettier": "^3.2.5",
-    "turbo": "latest"
+    "turbo": "latest",
+    "@biomejs/biome": "1.8.3"
   },
   "packageManager": "pnpm@8.9.0",
   "engines": {

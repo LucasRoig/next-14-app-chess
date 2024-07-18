@@ -1,25 +1,11 @@
 import { Poppins } from "next/font/google";
-import { Button } from "../components/ui/button";
 import { cn } from "../lib/utils";
-import { UserButton } from "@clerk/nextjs";
-import Chessboard from "../components/chessboard";
-import Game from "../../public/data/simple-game.json";
-import { NotationPanel } from "../components/notation-panel";
-import { NormalizedGame, NormalizedPosition } from "../lib/chess/normalized-game";
 import { dbClient, queryBuilder } from "@repo/database";
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
+import CreateChessDatabaseDialog from "./_components/create-chess-database-dialog";
+import { getAllChessDatabasesUseCase } from "../use-cases/chess-database-use-cases";
 
-const game = {
-  ...Game.game,
-  positions: {},
-} as unknown as NormalizedGame;
-for (const pos of Game.game.positions as any) {
-  game.positions[pos.index] = pos as NormalizedPosition;
-}
-for (const pos of Object.values(game.positions)) {
-  for (const variationIndex of pos.variationsIndexes) {
-    game.positions[variationIndex].parent = pos.index;
-  }
-}
+
 const font = Poppins({
   subsets: ["latin"],
   weight: ["200", "300", "400", "500", "600", "700", "800"],
@@ -28,18 +14,31 @@ const font = Poppins({
 });
 
 export default async function HomePage() {
-  const x = await queryBuilder.select(queryBuilder.Movie, () => ({
-    actors: () => ({name: true}),
-    title: true
-  })).run(dbClient)
+  const databases = await getAllChessDatabasesUseCase();
+
   return (
     <div>
-      {JSON.stringify(x)}
       <h1 className={cn(font.className)}>Welcome to Chess Trainer</h1>
-      {/* <UserButton /> */}
-      <div className="max-w-[400px]"></div>
-      <Chessboard />
-      <NotationPanel game={game} currentPositionIndex={0} />
+      <h3>Databases</h3>
+      <CreateChessDatabaseDialog />
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Name</TableHead>
+          </TableRow>
+        </TableHeader>
+        {databases.length === 0 ? (
+          <TableCaption>No database created</TableCaption>
+        ) : (
+          <TableBody>
+            {databases.map((database) => (
+              <TableRow key={database.id}>
+                <TableCell className="font-medium">{database.name}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        )}
+      </Table>
     </div>
   );
 }
