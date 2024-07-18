@@ -1,4 +1,8 @@
-import { createChessDatabase, getAllChessDatabases, getChessDatabaseById } from "../data-access/chess-database-data-access";
+import {
+  createChessDatabase,
+  getAllChessDatabases,
+  getChessDatabaseById,
+} from "../data-access/chess-database-data-access";
 
 export function createChessDatabaseUseCase(newDatabase: {
   name: string;

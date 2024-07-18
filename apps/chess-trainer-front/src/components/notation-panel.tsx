@@ -1,5 +1,5 @@
 "use client";
-import { NormalizedGame, NormalizedGameHelper, NormalizedPosition } from "../lib/chess/normalized-game";
+import { type NormalizedGame, NormalizedGameHelper, type NormalizedPosition } from "../lib/chess/normalized-game";
 import classes from "./notation-panel.module.css";
 
 type PositionClickedHandler = (pos: NormalizedPosition) => void;

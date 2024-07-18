@@ -1,29 +1,35 @@
 import { dbClient, queryBuilder } from "@repo/database";
 
 export function createChessDatabase(name: string) {
-  return queryBuilder.insert(queryBuilder.ChessDatabase, {
-    name,
-  }).run(dbClient);
+  return queryBuilder
+    .insert(queryBuilder.ChessDatabase, {
+      name,
+    })
+    .run(dbClient);
 }
 
 export function getAllChessDatabases() {
-  return queryBuilder.select(queryBuilder.ChessDatabase, () => ({
-    name: true,
-    id: true,
-  })).run(dbClient);
+  return queryBuilder
+    .select(queryBuilder.ChessDatabase, () => ({
+      name: true,
+      id: true,
+    }))
+    .run(dbClient);
 }
 
 export function getChessDatabaseById(id: string) {
-  return queryBuilder.select(queryBuilder.ChessDatabase, () => ({
-    name: true,
-    id: true,
-    games: () => ({
+  return queryBuilder
+    .select(queryBuilder.ChessDatabase, () => ({
+      name: true,
       id: true,
-      white: true,
-      black: true,
-    }),
-    filter_single: {
-      id,
-    }
-  })).run(dbClient);
+      games: () => ({
+        id: true,
+        white: true,
+        black: true,
+      }),
+      filter_single: {
+        id,
+      },
+    }))
+    .run(dbClient);
 }

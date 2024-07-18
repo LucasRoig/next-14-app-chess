@@ -1,9 +1,10 @@
 "use client";
 
-import { Loader2 } from "lucide-react"
+import { Loader2 } from "lucide-react";
 import { useState } from "react";
-import { Button } from "../../components/ui/button";
+import { toast } from "sonner";
 import { useServerAction } from "zsa-react";
+import { Button } from "../../components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -13,10 +14,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../../components/ui/dialog";
-import { Label } from "../../components/ui/label";
 import { Input } from "../../components/ui/input";
+import { Label } from "../../components/ui/label";
 import { createChessDatabaseAction } from "./create-chess-database-action";
-import { toast } from "sonner"
 
 export default function CreateChessDatabaseDialog() {
   const [createDbFormName, setCreateDbFormName] = useState("");

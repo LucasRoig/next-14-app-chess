@@ -1,5 +1,13 @@
 import { Link } from "lucide-react";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "../../../components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../../../components/ui/table";
 import { getChessDatabaseByIdUseCase } from "../../../use-cases/chess-database-use-cases";
 import { ImportPgnDialog } from "./import-pgn-dialog";
 

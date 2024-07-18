@@ -1,10 +1,10 @@
-import { Poppins } from "next/font/google";
-import { cn } from "../../lib/utils";
-import Chessboard from "../../components/chessboard";
-import Game from "../../../public/data/simple-game.json";
-import { NotationPanel } from "../../components/notation-panel";
-import { NormalizedGame, NormalizedPosition } from "../../lib/chess/normalized-game";
 import { dbClient, queryBuilder } from "@repo/database";
+import { Poppins } from "next/font/google";
+import Game from "../../../public/data/simple-game.json";
+import Chessboard from "../../components/chessboard";
+import { NotationPanel } from "../../components/notation-panel";
+import type { NormalizedGame, NormalizedPosition } from "../../lib/chess/normalized-game";
+import { cn } from "../../lib/utils";
 
 const game = {
   ...Game.game,
@@ -26,10 +26,12 @@ const font = Poppins({
 });
 
 export default async function HomePage() {
-  const x = await queryBuilder.select(queryBuilder.Movie, () => ({
-    actors: () => ({name: true}),
-    title: true
-  })).run(dbClient)
+  const x = await queryBuilder
+    .select(queryBuilder.Movie, () => ({
+      actors: () => ({ name: true }),
+      title: true,
+    }))
+    .run(dbClient);
   return (
     <div>
       {JSON.stringify(x)}

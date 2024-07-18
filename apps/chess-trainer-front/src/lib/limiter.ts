@@ -11,8 +11,8 @@
  * setup a redis instance just to launch your saas product.
  */
 
-import { getIp } from "./get-ip";
 import { RateLimitError } from "./errors";
+import { getIp } from "./get-ip";
 
 const PRUNE_INTERVAL = 60 * 1000; // 1 minute
 

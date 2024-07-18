@@ -30,10 +30,7 @@
         "useAwait": "error"
       }
     },
-    "ignore": [
-      "**/.*.js",
-      "**/node_modules/"
-    ]
+    "ignore": ["**/.*.js", "**/node_modules/"]
   },
   "javascript": {
     "globals": ["React", "JSX"]

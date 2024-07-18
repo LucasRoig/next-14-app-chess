@@ -1,12 +1,13 @@
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ClerkProvider } from '@clerk/nextjs'
 import { Toaster } from "../components/ui/sonner";
 
-const inter = Inter({ subsets: ["latin"],  
- display: "swap", //Fix network error to load font
-adjustFontFallback: false, //Fix network error to load font 
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap", //Fix network error to load font
+  adjustFontFallback: false, //Fix network error to load font
 });
 
 export const metadata: Metadata = {

@@ -1,4 +1,4 @@
-import { Color } from "./squares";
+import type { Color } from "./squares";
 
 export type PieceRole = "king" | "queen" | "rook" | "bishop" | "knight" | "pawn";
 export interface Piece {

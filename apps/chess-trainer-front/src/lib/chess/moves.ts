@@ -1,4 +1,4 @@
-import { Square } from "./squares";
+import type { Square } from "./squares";
 type PromotionType = "q" | "r" | "b" | "n";
 export type Move = {
   from: Square;

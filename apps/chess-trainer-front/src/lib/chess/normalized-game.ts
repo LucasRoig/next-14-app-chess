@@ -85,9 +85,9 @@ export const NormalizedGameHelper = {
     ) {
       forceMoveNumber = true;
     }
-    let lastMoveColor = FenUtils.fenToLastMoveColor(position.fen);
+    const lastMoveColor = FenUtils.fenToLastMoveColor(position.fen);
     if (lastMoveColor === "white" || forceMoveNumber) {
-      let separator = lastMoveColor === "white" ? "." : "...";
+      const separator = lastMoveColor === "white" ? "." : "...";
       let fullMoves = FenUtils.fenToFullMoves(position.fen);
       if (lastMoveColor === "black") {
         fullMoves--;

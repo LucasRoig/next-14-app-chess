@@ -104,11 +104,7 @@
       },
       {
         "index": 9,
-        "variationsIndexes": [
-          10,
-          25,
-          27
-        ],
+        "variationsIndexes": [10, 25, 27],
         "nags": [],
         "fen": "rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq - 0 2",
         "comment": "",
@@ -273,10 +269,7 @@
       },
       {
         "index": 14,
-        "variationsIndexes": [
-          15,
-          16
-        ],
+        "variationsIndexes": [15, 16],
         "nags": [],
         "fen": "rnbqkb1r/pp2pppp/2p2n2/8/2pP4/2N2N2/PP2PPPP/R1BQKB1R w KQkq - 0 5",
         "comment": "",
@@ -291,10 +284,7 @@
       },
       {
         "index": 16,
-        "variationsIndexes": [
-          17,
-          20
-        ],
+        "variationsIndexes": [17, 20],
         "nags": [],
         "fen": "rnbqkb1r/pp2pppp/2p2n2/8/2pP4/2N1PN2/PP3PPP/R1BQKB1R b KQkq - 0 5",
         "comment": "",
@@ -339,10 +329,7 @@
       },
       {
         "index": 22,
-        "variationsIndexes": [
-          23,
-          24
-        ],
+        "variationsIndexes": [23, 24],
         "nags": [],
         "fen": "rnbqk2r/pp3ppp/2p1pn2/8/1bBP4/2N1PN2/PP3PPP/R1BQK2R w KQkq - 1 7",
         "comment": "",
@@ -537,11 +524,7 @@
       },
       {
         "index": 0,
-        "variationsIndexes": [
-          1,
-          7,
-          31
-        ],
+        "variationsIndexes": [1, 7, 31],
         "nags": [],
         "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
         "comment": null,
