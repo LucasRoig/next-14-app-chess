@@ -1,4 +1,4 @@
-import { createChessDatabase, getAllChessDatabases } from "../data-access/chess-database-data-access";
+import { createChessDatabase, getAllChessDatabases, getChessDatabaseById } from "../data-access/chess-database-data-access";
 
 export function createChessDatabaseUseCase(newDatabase: {
   name: string;
@@ -8,4 +8,12 @@ export function createChessDatabaseUseCase(newDatabase: {
 
 export function getAllChessDatabasesUseCase() {
   return getAllChessDatabases();
+}
+
+export async function getChessDatabaseByIdUseCase(id: string) {
+  const database = await getChessDatabaseById(id);
+  if (!database) {
+    throw new Error("Database not found");
+  }
+  return database;
 }

@@ -1,5 +1,5 @@
 import { FenUtils } from "./fen";
-import { Move } from "./moves";
+import type { Move } from "./moves";
 
 type NormalizedFirstPosition = {
   index: number;

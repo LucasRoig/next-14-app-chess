@@ -1,10 +1,9 @@
 import { Poppins } from "next/font/google";
 import { cn } from "../lib/utils";
-import { dbClient, queryBuilder } from "@repo/database";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
 import CreateChessDatabaseDialog from "./_components/create-chess-database-dialog";
 import { getAllChessDatabasesUseCase } from "../use-cases/chess-database-use-cases";
-
+import Link from "next/link";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -24,7 +23,7 @@ export default async function HomePage() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Name</TableHead>
+            <TableHead className="w-full">Name</TableHead>
           </TableRow>
         </TableHeader>
         {databases.length === 0 ? (
@@ -33,7 +32,9 @@ export default async function HomePage() {
           <TableBody>
             {databases.map((database) => (
               <TableRow key={database.id}>
-                <TableCell className="font-medium">{database.name}</TableCell>
+                <Link key={database.id} href={`/databases/${database.id}`}>
+                  <TableCell className="font-medium w-full block">{database.name}</TableCell>
+                </Link>
               </TableRow>
             ))}
           </TableBody>

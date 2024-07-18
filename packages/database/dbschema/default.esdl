@@ -10,5 +10,12 @@ module default {
 
   type ChessDatabase {
     required name: str;
+    multi games: Game;
+  }
+
+  type Game {
+    required pgn: str;
+    required white: str;
+    required black: str;
   }
 }

@@ -23,6 +23,9 @@ importers:
       '@clerk/nextjs':
         specifier: ^5.0.3
         version: 5.1.2(next@14.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mliebelt/pgn-parser':
+        specifier: ^1.4.15
+        version: 1.4.15
       '@radix-ui/react-dialog':
         specifier: ^1.1.1
         version: 1.1.1(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -285,6 +288,13 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
+
+  '@mliebelt/pgn-parser@1.4.15':
+    resolution: {integrity: sha512-ONX3Tm9RFwUyE3h1n6TBCdQzxwjDQJumJlzEA2WlC+CvI5oVSJT+SOhe8RyQ5oLEebm3k6ZeH9zzrdTHf5miLg==}
+    hasBin: true
+
+  '@mliebelt/pgn-types@1.0.4':
+    resolution: {integrity: sha512-l1VUSp8pmdsr6HNTaZIQdmd70XqmtCp5jd0fOi4KpR/mq+NBbE1A178a6+rRy001A0/Li1rUxpssDzcYBR87GQ==}
 
   '@next/env@14.2.3':
     resolution: {integrity: sha512-W7fd7IbkfmeeY2gXrzJYDx8D2lWKbVoTIj1o1ScPHNzvp30s1AuoEFSdr39bC5sjxJaxTtq3OTCZboNp0lNWHA==}
@@ -2153,6 +2163,12 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
+
+  '@mliebelt/pgn-parser@1.4.15':
+    dependencies:
+      '@mliebelt/pgn-types': 1.0.4
+
+  '@mliebelt/pgn-types@1.0.4': {}
 
   '@next/env@14.2.3': {}
 
