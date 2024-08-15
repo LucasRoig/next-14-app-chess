@@ -6,7 +6,7 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "db:generate": "npx @edgedb/generate edgeql-js"
+    "db:generate": "npx @edgedb/generate edgeql-js && npx @edgedb/generate interfaces"
   },
   "dependencies": {
     "edgedb": "^1.5.7"

@@ -1,4 +1,4 @@
-import { dbClient, queryBuilder } from "@repo/database";
+import { dbClient, type Game, queryBuilder } from "@repo/database";
 
 export function createChessDatabase(name: string) {
   return queryBuilder
@@ -32,4 +32,14 @@ export function getChessDatabaseById(id: string) {
       },
     }))
     .run(dbClient);
+}
+
+export async function addGames(dbId: string, games: Omit<Game, "id">[]) {
+  const promises = games.map(game => addGame(dbId, game));
+  const results = await Promise.all(promises);
+  return results;
+}
+
+export function addGame(dbId: string, game: Omit<Game, "id">) {
+  return queryBuilder.insert(queryBuilder.Game, game).run(dbClient);
 }

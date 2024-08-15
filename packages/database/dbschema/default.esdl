@@ -13,9 +13,16 @@ module default {
     multi games: Game;
   }
 
+  scalar type GameResult extending enum<"1-0", "0-1", "1/2-1/2", "*">;
+
   type Game {
     required pgn: str;
     required white: str;
-    required black: str;
+    black: str;
+    whiteElo: int32;
+    blackElo: int32;
+    required result: GameResult;
+    event: str;
+    date: cal::local_date;
   }
 }
