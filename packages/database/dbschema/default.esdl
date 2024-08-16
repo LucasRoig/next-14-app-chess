@@ -10,7 +10,7 @@ module default {
 
   type ChessDatabase {
     required name: str;
-    multi games: Game;
+    multi games := .<chessDatabase[is Game];
   }
 
   scalar type GameResult extending enum<"1-0", "0-1", "1/2-1/2", "*">;
@@ -24,5 +24,6 @@ module default {
     required result: GameResult;
     event: str;
     date: cal::local_date;
+    chessDatabase: ChessDatabase;
   }
 }

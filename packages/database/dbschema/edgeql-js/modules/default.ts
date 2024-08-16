@@ -14,7 +14,9 @@ const GameResult: $GameResult = $.makeType<$GameResult>(_.spec, "68b9dfbe-5aea-1
 
 export type $ChessDatabaseλShape = $.typeutil.flatten<_std.$Object_8ce8c71ee4fa5f73840c22d7eaa58588λShape & {
   "name": $.PropertyDesc<_std.$str, $.Cardinality.One, false, false, false, false>;
-  "games": $.LinkDesc<$Game, $.Cardinality.Many, {}, false, false,  false, false>;
+  "games": $.LinkDesc<$Game, $.Cardinality.Many, {}, false, true,  false, false>;
+  "<chessDatabase[is Game]": $.LinkDesc<$Game, $.Cardinality.Many, {}, false, false,  false, false>;
+  "<chessDatabase": $.LinkDesc<$.ObjectType, $.Cardinality.Many, {}, false, false,  false, false>;
 }>;
 type $ChessDatabase = $.ObjectType<"default::ChessDatabase", $ChessDatabaseλShape, null, [
   ..._std.$Object_8ce8c71ee4fa5f73840c22d7eaa58588['__exclusives__'],
@@ -32,6 +34,7 @@ export type $GameλShape = $.typeutil.flatten<_std.$Object_8ce8c71ee4fa5f73840c2
   "result": $.PropertyDesc<$GameResult, $.Cardinality.One, false, false, false, false>;
   "whiteElo": $.PropertyDesc<_std.$int32, $.Cardinality.AtMostOne, false, false, false, false>;
   "event": $.PropertyDesc<_std.$str, $.Cardinality.AtMostOne, false, false, false, false>;
+  "chessDatabase": $.LinkDesc<$ChessDatabase, $.Cardinality.AtMostOne, {}, false, false,  false, false>;
   "<games[is ChessDatabase]": $.LinkDesc<$ChessDatabase, $.Cardinality.Many, {}, false, false,  false, false>;
   "<games": $.LinkDesc<$.ObjectType, $.Cardinality.Many, {}, false, false,  false, false>;
 }>;

@@ -26,6 +26,11 @@ export function getChessDatabaseById(id: string) {
         id: true,
         white: true,
         black: true,
+        date: true,
+        result: true,
+        event: true,
+        whiteElo: true,
+        blackElo: true,
       }),
       filter_single: {
         id,
@@ -40,6 +45,13 @@ export async function addGames(dbId: string, games: Omit<Game, "id">[]) {
   return results;
 }
 
-export function addGame(dbId: string, game: Omit<Game, "id">) {
-  return queryBuilder.insert(queryBuilder.Game, game).run(dbClient);
+export function addGame(dbId: string, game: Omit<Game, "id" | "chessDatabase">) {
+  return queryBuilder.insert(queryBuilder.Game, {
+    ...game,
+    chessDatabase: queryBuilder.select(queryBuilder.ChessDatabase, () => ({
+      filter_single: {
+        id: queryBuilder.uuid(dbId)
+      }
+    }))
+  }).run(dbClient);
 }

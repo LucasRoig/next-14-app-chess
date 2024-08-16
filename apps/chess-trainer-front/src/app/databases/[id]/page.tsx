@@ -1,4 +1,3 @@
-import { Link } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -9,7 +8,11 @@ import {
   TableRow,
 } from "../../../components/ui/table";
 import { getChessDatabaseByIdUseCase } from "../../../use-cases/chess-database-use-cases";
-import { ImportPgnDialog } from "./import-pgn-dialog";
+import { ImportPgnDialog, type ImportPgnSubmitHandler } from "./import-pgn-dialog";
+import { importPgnAction } from "./import-pgn-action";
+import { toast } from "sonner";
+import { ImportPgnInDatabaseDialog } from "./import-pgn-in-database-dialog";
+import Link from "next/link";
 
 type Props = {
   params: {
@@ -19,15 +22,17 @@ type Props = {
 
 export default async function DatabaseDetailsPage(props: Props) {
   const database = await getChessDatabaseByIdUseCase(props.params.id);
+
   return (
     <>
       <div>Database: {database.name}</div>
-      <ImportPgnDialog />
+      {JSON.stringify(database.games)}
+      <ImportPgnInDatabaseDialog databaseId={database.id} />
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-full">White</TableHead>
-            <TableHead className="w-full">Black</TableHead>
+            <TableHead>White</TableHead>
+            <TableHead>Black</TableHead>
           </TableRow>
         </TableHeader>
         {database.games.length === 0 ? (
@@ -36,15 +41,22 @@ export default async function DatabaseDetailsPage(props: Props) {
           <TableBody>
             {database.games.map((game) => (
               <TableRow key={game.id}>
-                <Link href={`/games/${database.id}`}>
-                  <TableCell className="font-medium w-full block">{game.white}</TableCell>
-                  <TableCell className="font-medium w-full block">{game.black}</TableCell>
-                </Link>
+                <TableCell className="font-medium"><CustomLink href={`/game/${game.id}`}>{game.white}</CustomLink></TableCell>
+
+                <TableCell className="font-medium"><CustomLink href={`/game/${game.id}`}>{game.black}</CustomLink></TableCell>
               </TableRow>
             ))}
           </TableBody>
         )}
       </Table>
     </>
+  );
+}
+
+function CustomLink(props: { href: string, children: React.ReactNode }) {
+  return (
+    <Link href={props.href} className="block w-full h-full">
+      {props.children}
+    </Link>
   );
 }

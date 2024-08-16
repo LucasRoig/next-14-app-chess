@@ -1,23 +1,25 @@
 "use client";
 
-import { Label } from "@radix-ui/react-label";
-import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../../../components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "../../../components/ui/dialog";
 import { Input } from "../../../components/ui/input";
-import { parsePgnUseCase, validatePgnUseCase } from "../../../use-cases/pgn-use-cases";
-import { importPgnAction } from "./import-pgn-action";
+import { validatePgnUseCase } from "../../../use-cases/pgn-use-cases";
 
-export function ImportPgnDialog() {
+export type ImportPgnSubmitHandler = (pgn: string, closeDialog: () => void) => void;
+
+export type PgnImportDialogProps = {
+  onSubmit?: ImportPgnSubmitHandler;
+}
+
+export function ImportPgnDialog(props: PgnImportDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isValidPgn, setIsValidPgn] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -35,13 +37,9 @@ export function ImportPgnDialog() {
   };
   const handleSubmit = async () => {
     console.debug("submit");
-    if (selectedFile) {
-      console.debug("selectedFile", selectedFile);
+    if (selectedFile && props.onSubmit) {
       const text = await selectedFile.text();
-      await importPgnAction({
-        pgn: text,
-        dbId: "TODO",
-      });
+      props.onSubmit(text, () => setIsOpen(false));
     }
   }
 

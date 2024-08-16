@@ -87,6 +87,7 @@ export namespace $default {
     "result": GameResult;
     "whiteElo"?: number | null;
     "event"?: string | null;
+    "chessDatabase"?: ChessDatabase | null;
   }
   export type GameResult = "1-0" | "0-1" | "1/2-1/2" | "*";
   export interface Movie extends std.$Object {
