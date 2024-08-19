@@ -12,10 +12,18 @@ export type $GameResult = {
 } & $.EnumType<"default::GameResult", ["1-0", "0-1", "1/2-1/2", "*"]>;
 const GameResult: $GameResult = $.makeType<$GameResult>(_.spec, "68b9dfbe-5aea-11ef-a2bb-d7c28223b2fe", _.syntax.literal);
 
+export type $GameSourceKind = {
+  "Lichess": $.$expr_Literal<$GameSourceKind>;
+} & $.EnumType<"default::GameSourceKind", ["Lichess"]>;
+const GameSourceKind: $GameSourceKind = $.makeType<$GameSourceKind>(_.spec, "0a4c02bf-5bf0-11ef-b4a8-c38217a9d370", _.syntax.literal);
+
 export type $ChessDatabaseλShape = $.typeutil.flatten<_std.$Object_8ce8c71ee4fa5f73840c22d7eaa58588λShape & {
   "name": $.PropertyDesc<_std.$str, $.Cardinality.One, false, false, false, false>;
   "games": $.LinkDesc<$Game, $.Cardinality.Many, {}, false, true,  false, false>;
+  "sources": $.LinkDesc<$GameSource, $.Cardinality.Many, {}, false, true,  false, false>;
   "<chessDatabase[is Game]": $.LinkDesc<$Game, $.Cardinality.Many, {}, false, false,  false, false>;
+  "<chessDatabase[is GameSource]": $.LinkDesc<$GameSource, $.Cardinality.Many, {}, false, false,  false, false>;
+  "<chessDatabase[is LichessSource]": $.LinkDesc<$LichessSource, $.Cardinality.Many, {}, false, false,  false, false>;
   "<chessDatabase": $.LinkDesc<$.ObjectType, $.Cardinality.Many, {}, false, false,  false, false>;
 }>;
 type $ChessDatabase = $.ObjectType<"default::ChessDatabase", $ChessDatabaseλShape, null, [
@@ -35,6 +43,7 @@ export type $GameλShape = $.typeutil.flatten<_std.$Object_8ce8c71ee4fa5f73840c2
   "whiteElo": $.PropertyDesc<_std.$int32, $.Cardinality.AtMostOne, false, false, false, false>;
   "event": $.PropertyDesc<_std.$str, $.Cardinality.AtMostOne, false, false, false, false>;
   "chessDatabase": $.LinkDesc<$ChessDatabase, $.Cardinality.AtMostOne, {}, false, false,  false, false>;
+  "gameSource": $.LinkDesc<$GameSource, $.Cardinality.AtMostOne, {}, false, false,  false, false>;
   "<games[is ChessDatabase]": $.LinkDesc<$ChessDatabase, $.Cardinality.Many, {}, false, false,  false, false>;
   "<games": $.LinkDesc<$.ObjectType, $.Cardinality.Many, {}, false, false,  false, false>;
 }>;
@@ -44,6 +53,39 @@ type $Game = $.ObjectType<"default::Game", $GameλShape, null, [
 const $Game = $.makeType<$Game>(_.spec, "81e35c8f-453c-11ef-8d46-2f96a408312c", _.syntax.literal);
 
 const Game: $.$expr_PathNode<$.TypeSet<$Game, $.Cardinality.Many>, null> = _.syntax.$PathNode($.$toSet($Game, $.Cardinality.Many), null);
+
+export type $GameSourceλShape = $.typeutil.flatten<_std.$Object_8ce8c71ee4fa5f73840c22d7eaa58588λShape & {
+  "chessDatabase": $.LinkDesc<$ChessDatabase, $.Cardinality.One, {}, false, false,  false, false>;
+  "kind": $.PropertyDesc<$GameSourceKind, $.Cardinality.One, false, false, false, false>;
+  "lastGameTimestamp": $.PropertyDesc<_std.$int64, $.Cardinality.AtMostOne, false, false, false, false>;
+  "lastImportDate": $.PropertyDesc<_cal.$local_date, $.Cardinality.AtMostOne, false, false, false, false>;
+  "username": $.PropertyDesc<_std.$str, $.Cardinality.One, false, false, false, false>;
+  "<sources[is ChessDatabase]": $.LinkDesc<$ChessDatabase, $.Cardinality.Many, {}, false, false,  false, false>;
+  "<gameSource[is Game]": $.LinkDesc<$Game, $.Cardinality.Many, {}, false, false,  false, false>;
+  "<gameSource": $.LinkDesc<$.ObjectType, $.Cardinality.Many, {}, false, false,  false, false>;
+  "<sources": $.LinkDesc<$.ObjectType, $.Cardinality.Many, {}, false, false,  false, false>;
+}>;
+type $GameSource = $.ObjectType<"default::GameSource", $GameSourceλShape, null, [
+  ..._std.$Object_8ce8c71ee4fa5f73840c22d7eaa58588['__exclusives__'],
+]>;
+const $GameSource = $.makeType<$GameSource>(_.spec, "0a4c109b-5bf0-11ef-8e10-b1580560bb9b", _.syntax.literal);
+
+const GameSource: $.$expr_PathNode<$.TypeSet<$GameSource, $.Cardinality.Many>, null> = _.syntax.$PathNode($.$toSet($GameSource, $.Cardinality.Many), null);
+
+export type $LichessSourceλShape = $.typeutil.flatten<$GameSourceλShape & {
+  "importBlitz": $.PropertyDesc<_std.$bool, $.Cardinality.One, false, false, false, false>;
+  "importBullet": $.PropertyDesc<_std.$bool, $.Cardinality.One, false, false, false, false>;
+  "importClassical": $.PropertyDesc<_std.$bool, $.Cardinality.One, false, false, false, false>;
+  "importCorrespondence": $.PropertyDesc<_std.$bool, $.Cardinality.One, false, false, false, false>;
+  "importRapid": $.PropertyDesc<_std.$bool, $.Cardinality.One, false, false, false, false>;
+  "importUltraBullet": $.PropertyDesc<_std.$bool, $.Cardinality.One, false, false, false, false>;
+}>;
+type $LichessSource = $.ObjectType<"default::LichessSource", $LichessSourceλShape, null, [
+  ...$GameSource['__exclusives__'],
+]>;
+const $LichessSource = $.makeType<$LichessSource>(_.spec, "0a4f4864-5bf0-11ef-8ed4-f97dc3880930", _.syntax.literal);
+
+const LichessSource: $.$expr_PathNode<$.TypeSet<$LichessSource, $.Cardinality.Many>, null> = _.syntax.$PathNode($.$toSet($LichessSource, $.Cardinality.Many), null);
 
 export type $MovieλShape = $.typeutil.flatten<_std.$Object_8ce8c71ee4fa5f73840c22d7eaa58588λShape & {
   "actors": $.LinkDesc<$Person, $.Cardinality.Many, {}, false, false,  false, false>;
@@ -70,19 +112,25 @@ const Person: $.$expr_PathNode<$.TypeSet<$Person, $.Cardinality.Many>, null> = _
 
 
 
-export { GameResult, $ChessDatabase, ChessDatabase, $Game, Game, $Movie, Movie, $Person, Person };
+export { GameResult, GameSourceKind, $ChessDatabase, ChessDatabase, $Game, Game, $GameSource, GameSource, $LichessSource, LichessSource, $Movie, Movie, $Person, Person };
 
 type __defaultExports = {
   "GameResult": typeof GameResult;
+  "GameSourceKind": typeof GameSourceKind;
   "ChessDatabase": typeof ChessDatabase;
   "Game": typeof Game;
+  "GameSource": typeof GameSource;
+  "LichessSource": typeof LichessSource;
   "Movie": typeof Movie;
   "Person": typeof Person
 };
 const __defaultExports: __defaultExports = {
   "GameResult": GameResult,
+  "GameSourceKind": GameSourceKind,
   "ChessDatabase": ChessDatabase,
   "Game": Game,
+  "GameSource": GameSource,
+  "LichessSource": LichessSource,
   "Movie": Movie,
   "Person": Person
 };

@@ -695,6 +695,8 @@ export type $ObjectTypeλShape = $.typeutil.flatten<$SourceλShape & Omit<$Consi
   "<__type__[is Movie]": $.LinkDesc<_default.$Movie, $.Cardinality.Many, {}, false, false,  false, false>;
   "<__type__[is ChessDatabase]": $.LinkDesc<_default.$ChessDatabase, $.Cardinality.Many, {}, false, false,  false, false>;
   "<__type__[is Game]": $.LinkDesc<_default.$Game, $.Cardinality.Many, {}, false, false,  false, false>;
+  "<__type__[is GameSource]": $.LinkDesc<_default.$GameSource, $.Cardinality.Many, {}, false, false,  false, false>;
+  "<__type__[is LichessSource]": $.LinkDesc<_default.$LichessSource, $.Cardinality.Many, {}, false, false,  false, false>;
   "<__type__": $.LinkDesc<$.ObjectType, $.Cardinality.Many, {}, false, false,  false, false>;
   "<intersection_of": $.LinkDesc<$.ObjectType, $.Cardinality.Many, {}, false, false,  false, false>;
   "<subject": $.LinkDesc<$.ObjectType, $.Cardinality.Many, {}, false, false,  false, false>;

@@ -77,6 +77,7 @@ export namespace $default {
   export interface ChessDatabase extends std.$Object {
     "name": string;
     "games": Game[];
+    "sources": GameSource[];
   }
   export interface Game extends std.$Object {
     "pgn": string;
@@ -88,8 +89,25 @@ export namespace $default {
     "whiteElo"?: number | null;
     "event"?: string | null;
     "chessDatabase"?: ChessDatabase | null;
+    "gameSource"?: GameSource | null;
   }
   export type GameResult = "1-0" | "0-1" | "1/2-1/2" | "*";
+  export interface GameSource extends std.$Object {
+    "chessDatabase": ChessDatabase;
+    "kind": GameSourceKind;
+    "lastGameTimestamp"?: number | null;
+    "lastImportDate"?: edgedb.LocalDate | null;
+    "username": string;
+  }
+  export type GameSourceKind = "Lichess";
+  export interface LichessSource extends GameSource {
+    "importBlitz": boolean;
+    "importBullet": boolean;
+    "importClassical": boolean;
+    "importCorrespondence": boolean;
+    "importRapid": boolean;
+    "importUltraBullet": boolean;
+  }
   export interface Movie extends std.$Object {
     "actors": Person[];
     "title": string;
@@ -101,12 +119,18 @@ export namespace $default {
 import ChessDatabase = $default.ChessDatabase;
 import Game = $default.Game;
 import GameResult = $default.GameResult;
+import GameSource = $default.GameSource;
+import GameSourceKind = $default.GameSourceKind;
+import LichessSource = $default.LichessSource;
 import Movie = $default.Movie;
 import Person = $default.Person;
 export type {
   ChessDatabase,
   Game,
   GameResult,
+  GameSource,
+  GameSourceKind,
+  LichessSource,
   Movie,
   Person
 };
@@ -374,6 +398,9 @@ export interface types {
     "ChessDatabase": $default.ChessDatabase;
     "Game": $default.Game;
     "GameResult": $default.GameResult;
+    "GameSource": $default.GameSource;
+    "GameSourceKind": $default.GameSourceKind;
+    "LichessSource": $default.LichessSource;
     "Movie": $default.Movie;
     "Person": $default.Person;
   };

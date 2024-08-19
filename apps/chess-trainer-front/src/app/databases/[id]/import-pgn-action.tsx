@@ -21,7 +21,7 @@ export const importPgnAction = publicAction
       const pgnGames = parsePgnUseCase(input.pgn);
       console.debug("pgnGames", pgnGames);
       const dbGames = pgnGames.map((pgnGame) => normalizedGameToDbGameUseCase(pgnGame));
-      const result = await addGames(input.dbId, dbGames);
+      const result = await addGames(input.dbId, dbGames, undefined);
       revalidatePath("/");
       return result;
     } catch (e) {

@@ -52,6 +52,7 @@ export type scalarAssignableBy<T extends $.ScalarType> =
   T extends _fts.$LuceneLanguage ? _fts.$LuceneLanguage : 
   T extends _fts.$Language ? _fts.$Language : 
   T extends _fts.$ElasticLanguage ? _fts.$ElasticLanguage : 
+  T extends _default.$GameSourceKind ? _default.$GameSourceKind : 
   T extends _default.$GameResult ? _default.$GameResult : 
   T extends _cfg.$memory ? _cfg.$memory : 
   T extends _cfg.$QueryCacheMode ? _cfg.$QueryCacheMode : 
@@ -105,6 +106,7 @@ export type scalarCastableFrom<T extends $.ScalarType> =
   T extends _fts.$LuceneLanguage ? _fts.$LuceneLanguage : 
   T extends _fts.$Language ? _fts.$Language : 
   T extends _fts.$ElasticLanguage ? _fts.$ElasticLanguage : 
+  T extends _default.$GameSourceKind ? _default.$GameSourceKind : 
   T extends _default.$GameResult ? _default.$GameResult : 
   T extends _cfg.$memory ? _cfg.$memory : 
   T extends _cfg.$QueryCacheMode ? _cfg.$QueryCacheMode : 
@@ -360,6 +362,12 @@ type getSharedParentScalar<A, B> =
   :
   A extends _fts.$ElasticLanguage ?
     B extends _fts.$ElasticLanguage ?
+    B
+    :
+    never
+  :
+  A extends _default.$GameSourceKind ?
+    B extends _default.$GameSourceKind ?
     B
     :
     never
@@ -683,6 +691,12 @@ function getSharedParentScalar<A extends $.ScalarType, B extends $.ScalarType>(a
     }
   if (a.__name__ === "fts::ElasticLanguage") {
     if(b.__name__ === "fts::ElasticLanguage") {
+      return b;
+    }
+    throw new Error(`Types are not castable: ${a.__name__}, ${b.__name__}`);
+    }
+  if (a.__name__ === "default::GameSourceKind") {
+    if(b.__name__ === "default::GameSourceKind") {
       return b;
     }
     throw new Error(`Types are not castable: ${a.__name__}, ${b.__name__}`);
