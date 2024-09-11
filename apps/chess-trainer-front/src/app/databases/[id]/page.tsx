@@ -15,6 +15,7 @@ import { getChessDatabaseByIdUseCase } from "../../../use-cases/chess-database-u
 import { AddSourceDialog } from "./add-source-dialog";
 import { ImportPgnInDatabaseDialog } from "./import-pgn-in-database-dialog";
 import Link from "next/link";
+import { ImportLichessSourceDialog } from "./import-lichess-source-dialog";
 
 type Props = {
   params: {
@@ -64,7 +65,7 @@ export default async function DatabaseDetailsPage(props: Props) {
           <AddSourceDialog databaseId={database.id} />
           <div className="flex flex-col mt-4">
             {database.sources.map((source) => (
-              <LichessSourceItem key={source.id} source={source} />
+              <LichessSourceItem key={source.id} source={source} databaseId={database.id} />
             ))}
           </div>
         </TabsContent>
@@ -73,7 +74,7 @@ export default async function DatabaseDetailsPage(props: Props) {
   );
 }
 
-function LichessSourceItem({ source }: { source: Omit<LichessSource, "chessDatabase"> }) {
+function LichessSourceItem({ source, databaseId }: { source: Omit<LichessSource, "chessDatabase">, databaseId: string }) {
   return (
     <div className="flex flex-col gap-2 border border-solid p-4">
       <div className="flex items-center gap-8">
@@ -114,10 +115,11 @@ function LichessSourceItem({ source }: { source: Omit<LichessSource, "chessDatab
           </div>
           <div className="flex items-center gap-2">
             <Checkbox checked={source.importCorrespondence} disabled={true} />
-            <Label>Correspondance</Label>
+            <Label>Correspondence</Label>
           </div>
         </div>
       </div>
+      <ImportLichessSourceDialog source={source} databaseId={databaseId} />
     </div>
   );
 }

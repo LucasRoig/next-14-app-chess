@@ -17,7 +17,6 @@ function getGames(pgn: string) {
 }
 
 function parseTreeToNormalizedGame(tree: ParseTree): NormalizedGameWithoutId {
-  console.debug("parsing a pgn");
   let game = NormalizedGameHelper.newNormalizedGame();
   if (tree.tags) {
     for (const [key, value] of Object.entries(tree.tags)) {
@@ -52,10 +51,8 @@ function parseTreeToNormalizedGame(tree: ParseTree): NormalizedGameWithoutId {
     game.comment = tree.gameComment.comment;
   }
   function parseLine(line: PgnMove[], pos: NormalizedFirstPosition) {
-    console.debug("parsing a line", pos);
     let currentPosition = pos;
     for (const move of line) {
-      console.debug("parsing a move", move);
       const san = move.notation.notation;
       const r = NormalizedGameMutator.handleMoveFromSan(game, currentPosition, san);
       if (r.hasChanged) {
@@ -78,7 +75,6 @@ function parseTreeToNormalizedGame(tree: ParseTree): NormalizedGameWithoutId {
 export function validatePgnUseCase(pgn: string) {
   try {
     const _games = getGames(pgn);
-    console.log("game", _games);
     return true;
   } catch (_e) {
     return false;
